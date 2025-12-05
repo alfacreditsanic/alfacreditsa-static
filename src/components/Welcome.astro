@@ -1,5 +1,6 @@
 ---
 import Nav from "./Nav.astro";
+import coverimage from "../assets/cover-img.webp";
 ---
 
 <div id="container">
@@ -33,7 +34,11 @@ import Nav from "./Nav.astro";
                 Ver requisitos y beneficios
               </a>
             </div>
-          </div>          
+          </div>
+          <div class="mt-8 md:mt-0 md:w-6/12">
+            <img src={coverimage.src} alt="Emprende con Alfacredit S A" class="rounded-md">
+          </div>
+          
         </div>
       </section>
   </main>

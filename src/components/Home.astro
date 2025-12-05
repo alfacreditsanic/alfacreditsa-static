@@ -1,0 +1,103 @@
+---
+import logo from '../assets/logo-alfa.png';
+import HomeCard from '../components/HomeCard.astro';
+import Benefits from '../components/Benefits.astro';
+import BranchesGrid from '../components/BranchesGrid.astro';
+import Button from '../components/Button.astro';
+import img1 from '../assets/collage-1.jpg';
+import img2 from '../assets/collage-2.webp';
+import img3 from '../assets/collage-3.avif';
+
+const benefitsData = [
+  {
+    title: 'Seguro INISER para clientes mayores (50+)',
+    text: 'Sin costo adicional, con solo solicitar un crédito, clientes mayores de 50 años reciben cobertura de INISER que protege el saldo de su crédito en caso de tragedia, evitando dejar deudas a la familia.'
+  },
+  {
+    title: 'Transparencia total en cuotas y condiciones',
+    text: 'Sin letra pequeña. Explicamos de forma clara montos, cuotas semanales, plazos y costos. Siempre sabrás cuánto pagas y cuándo lo pagas.'
+  },
+  {
+    title: 'Procesos ágiles y acompañamiento personal',
+    text: 'Solicitud simple, visita el mismo día, evaluación rápida y seguimiento por un asesor asignado. Estamos contigo en todo el proceso.'
+  }
+];
+
+const requirementsHtml = `
+  <ul class="inline-block text-left space-y-2">
+    <li>✅ Negocio propio</li>
+    <li>✅ Garantías prendarias</li>
+    <li>✅ 6 meses como mínimo de tener el negocio</li>
+  </ul>
+`;
+
+const branches = [
+  { city: 'Estelí', title: 'Estelí', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
+  { city: 'Juigalpa', title: 'Juigalpa', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
+  { city: 'Managua', title: 'Managua', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
+  { city: 'Managua Norte', title: 'Managua Norte', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
+  { city: 'Rivas', title: 'Rivas', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
+  { city: 'Sébaco', title: 'Sébaco', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
+  { city: 'León', title: 'Leon', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
+  { city: 'Masaya', title: 'Masaya', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
+  { city: 'Jinotepe', title: 'Jinotepe', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
+];
+
+const homeCards = [
+  {
+    image: '/images/card-1.jpg',
+    title: 'Asesor personalizado',
+    description: 'Recibirás seguimiento de un asesor durante todo tu proceso.',
+    phone: '+50558096263',
+    buttonText: 'Llamar'
+  },
+  {
+    image: '/images/card-2.jpg',
+    title: 'Atención rápida',
+    description: 'Evaluación y visita el mismo día.',
+    phone: '+50558096263',
+    buttonText: 'Llamar'
+  }
+];
+---
+
+      <!-- Header / Archive title logic:
+           En WP comprobabas is_archive/is_search/is_404... aquí puedes usar rutas o props para renderizar distintos títulos.
+           Para esta versión estática no renderizo los títulos condicionales. -->
+      
+      <!-- Benefits + Collage -->
+      <Benefits heading="Beneficios al adquirir un crédito con AlfaCredit, S.A." items={benefitsData}>
+        <!-- slot: imágenes del collage (ejemplo) -->
+        <div class="grid grid-cols-2 gap-3 w-full home-collage img hidden md:block">
+          <img src={img1.src} alt="Collage 1" class=""/>
+          <img src={img2.src} alt="Collage 2" class=""/>
+          <img src={img3.src} alt="Collage 3" class=""/>
+        </div>
+        <img src={img3.src} alt="Collage 3" class="md:hidden rounded-md"/>
+      </Benefits>
+
+      <!-- Requisitos + CTA -->
+      <section class="py-12 bg-zinc-100 text-center">
+        <div class="mx-auto text-center py-8 max-w-[860px] text-xl font-semibold">
+          <h2 class="mb-4 text-2xl md:text-4xl font-black tracking-tight text-zinc-950">Requisitos para pedir un préstamo</h2>
+          <div class="mt-4">
+            <div class="inline-block text-left">
+              <!-- Injected HTML (puedes convertirlo a data structure si prefieres) -->
+              <div set:html={requirementsHtml} />
+            </div>
+          </div>
+          <div class="mt-6">
+            <Button href="/solicitar" variant="primary">¡Solicita ahora!</Button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Branches -->
+      <BranchesGrid branches={branches} />
+
+      <!-- Home cards (antes widget area con cards) -->
+      <section class="py-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          {homeCards.map((c) => <HomeCard {...c} />)}
+        </div>
+      </section>

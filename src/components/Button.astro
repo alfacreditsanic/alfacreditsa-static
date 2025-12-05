@@ -1,0 +1,32 @@
+---
+export interface Props {
+  href?: string;
+  children?: any;
+  variant?: 'primary' | 'secondary';
+  ariaLabel?: string;
+  onClick?: string; // ahora recibimos código JS como string
+}
+
+const { href, children, variant = 'primary', ariaLabel, onClick } = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center px-5 py-2 rounded-2xl font-semibold transition-shadow focus:outline-none focus:ring-2 focus:ring-offset-2';
+const primary = 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 shadow-sm';
+const secondary = 'bg-white border border-zinc-200 text-zinc-800 hover:bg-zinc-50 focus:ring-zinc-400';
+const cls = `${base} ${variant === "primary" ? primary : secondary}`;
+---
+
+{href ? (
+  <a class={cls} href={href} aria-label={ariaLabel ?? ''}>
+    {children}
+  </a>
+) : (
+  <button
+    class={cls}
+    aria-label={ariaLabel ?? ''}
+    is:raw
+    onclick={onClick} 
+  >
+    {children}
+  </button>
+)}
