@@ -1,132 +1,41 @@
 ---
-import background from '../assets/background.svg';
-import logo from '../assets/logo-alfa.png'; // cambia esto por tu logo real
+import Nav from "./Nav.astro";
 ---
 
 <div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
 
-	<main>
-		<section id="hero">
-			<div class="logo">
-				<img src={logo.src} alt="Logo Empresa" width="140" />
-				<span class="name">AlfaCredit,S.A.</span>
-				<span class="slogan">Confiamos en ti...</span>
-			</div>
+  <main>
+    <header>      
+      <Nav/>
+    </header>      
 
-			<h1 class="title">
-				Sitio web en construcción
-			</h1>
-
-			<p class="subtitle">
-				Estamos trabajando en el nuevo sitio web oficial.  
-				<span class="highlight">Pronto estará disponible.</span>
-			</p>
-
-			<div id="links">
-				<a class="button" href="tel:+50558096263">📞 Llamar ahora</a>
-				<a class="secondary" href="mailto:Atencionusuario@alfacreditsa.com">✉️ Enviar correo</a>
-				<p>📌 Estelí, Nicaragua. Edificio Gonzales 25 varas al sur, segunda planta.</p>
-			</div>
-		</section>
-	</main>
+      <section class="bg-zinc-100 py-12">
+        <div class="md:flex items-center max-w-7xl mx-auto px-2 md:px-0">
+          <div class="md:w-6/12 lg:w-7/12">
+            <div class="">
+              <h1
+                class="leading-tight text-3xl md:text-5xl font-black tracking-tight text-balance text-zinc-950"
+              >
+                Créditos rápidos para tu negocio.
+              </h1>
+              <p
+                class="mt-4 text-lg md:text-xl text-zinc-600 leading-8 text-balance"
+              >
+                Microcréditos diseñados para emprendedores, pymes y comerciantes
+                que necesitan crecer sin complicaciones.
+              </p>
+            </div>
+            <div class="mt-2 md:mt-4">
+              <a href="https://tailpress.io" class="btn-primary">
+                Llama ahora!
+              </a>
+              <a href="https://tailpress.io" class="btn-secondary ml-4">
+                Ver requisitos y beneficios
+              </a>
+            </div>
+          </div>          
+        </div>
+      </section>
+  </main>
 </div>
 
-<style>
-	.logo{
-		display: flex;
-		flex-direction: column;
-	}
-	.logo img{
-		margin: auto;
-	}
-	.logo .name{
-		font-weight: bold;
-		font-size: 24px;
-	}
-	.logo .slogan {}
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
-
-	#container {
-		font-family: Inter, sans-serif;
-		height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		padding: 2rem;
-	}
-
-	main {
-		max-width: 700px;
-		text-align: center;
-	}
-
-	.title {
-		font-size: clamp(2rem, 4vw, 3rem);
-		margin: 1rem 0;
-		font-weight: 800;
-		color: #111827;
-	}
-
-	.subtitle {
-		font-size: 1.125rem;
-		color: #4b5563;
-		line-height: 1.6;
-	}
-
-	.highlight {
-		color: #000;
-		font-weight: 600;
-	}
-
-	#links {
-		display: flex;
-		gap: 1rem;
-		margin-top: 1.5rem;
-		justify-content: center;
-		flex-wrap: wrap;
-	}
-
-	a {
-		text-decoration: none;
-	}
-
-	.button {
-		background: #0ea5e9;
-		color: white;
-		padding: 0.75rem 1.25rem;
-		border-radius: 10px;
-		font-weight: 600;
-		transition: opacity .2s;
-	}
-
-	.button:hover {
-		opacity: .8;
-	}
-
-	.secondary {
-		color: #111827;
-		padding: 0.75rem 1rem;
-		border-radius: 10px;
-		background: rgba(255,255,255,0.7);
-		backdrop-filter: blur(10px);
-	}
-
-	.secondary:hover {
-		background: rgba(255,255,255,0.9);
-	}
-
-	@media screen and (max-width: 768px) {
-		.subtitle {
-			font-size: 1rem;
-		}
-	}
-</style>
