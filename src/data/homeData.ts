@@ -26,14 +26,14 @@ export const benefitsData = [
   // SUCURSALES
   export const branches = [
     { city: 'Estelí', title: 'Estelí', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '5809 6263' },
-    { city: 'Juigalpa', title: 'Juigalpa', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '5809 6263' },
-    { city: 'Managua Bolonia', title: 'Managua Bolonia', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '5809 6263' },
-    { city: 'Managua Norte', title: 'Managua Norte', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '5809 6263' },
-    { city: 'Rivas', title: 'Rivas', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '5809 6263' },
-    { city: 'Sébaco', title: 'Sébaco', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '5809 6263' },
-    { city: 'León', title: 'Leon', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '5809 6263' },
-    { city: 'Masaya', title: 'Masaya', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '5809 6263' },
-    { city: 'Jinotepe', title: 'Jinotepe', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '5809 6263' },
+    { city: 'Juigalpa', title: 'Juigalpa', address: 'Banpro 1 ½ al sur.', phone: '5809 6263' },
+    { city: 'Managua Bolonia', title: 'Managua Bolonia', address: 'Reparto Bolonia del Portón Principal del donde fue el hospital militar 1 cuadra al lago 1 ½ abajo.', phone: '5809 6263' },
+    { city: 'Managua Norte', title: 'Managua Norte', address: 'Barrio Romín Manrique costado oeste de los semáforos de la Tenderí.', phone: '5809 6263' },
+    { city: 'Rivas', title: 'Rivas', address: 'Barrio Santa Ana Costado Norte Gimnasio Humberto Méndez.', phone: '5809 6263' },
+    { city: 'Sébaco', title: 'Sébaco', address: 'BDF 3 cuadras al Este.', phone: '5809 6263' },
+    { city: 'León', title: 'Leon', address: 'Barrio El Sagrario frente costado Noreste de la UNAN-León.', phone: '5809 6263' },
+    { city: 'Masaya', title: 'Masaya', address: 'Barrio Mauricio Montenegro de Restaurante Verdi 75 varas al sur.', phone: '5809 6263' },
+    { city: 'Jinotepe', title: 'Jinotepe', address: 'San Antonio, Frente al Costado oeste de donde fueron los Juzgados.', phone: '5809 6263' },
   ];
   
   // HOME CARDS
