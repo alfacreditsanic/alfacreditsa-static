@@ -7,6 +7,7 @@ import Button from '../components/Button.astro';
 import img1 from '../assets/collage-1.jpg';
 import img2 from '../assets/collage-2.webp';
 import img3 from '../assets/collage-3.avif';
+import BtnRequest from './BtnRequest.astro';
 
 const benefitsData = [
   {
@@ -25,9 +26,9 @@ const benefitsData = [
 
 const requirementsHtml = `
   <ul class="inline-block text-left space-y-2">
-    <li>✅ Negocio propio</li>
-    <li>✅ Garantías prendarias</li>
-    <li>✅ 6 meses como mínimo de tener el negocio</li>
+    <li>✓ Negocio propio</li>
+    <li>✓ Garantías prendarias</li>
+    <li>✓ 6 meses como mínimo de tener el negocio</li>
   </ul>
 `;
 
@@ -68,27 +69,28 @@ const homeCards = [
       <!-- Benefits + Collage -->
       <Benefits heading="Beneficios al adquirir un crédito con AlfaCredit, S.A." items={benefitsData}>
         <!-- slot: imágenes del collage (ejemplo) -->
-        <div class="grid grid-cols-2 gap-3 w-full home-collage img hidden md:block">
-          <img src={img1.src} alt="Collage 1" class=""/>
-          <img src={img2.src} alt="Collage 2" class=""/>
-          <img src={img3.src} alt="Collage 3" class=""/>
+        <div class="md:grid grid-cols-2 gap-3 w-full home-collage hidden">
+          <img src={img1.src} alt="Collage 1"/>
+          <img src={img2.src} alt="Collage 2"/>
+          <img src={img3.src} alt="Collage 3"/>
         </div>
         <img src={img3.src} alt="Collage 3" class="md:hidden rounded-md"/>
       </Benefits>
 
       <!-- Requisitos + CTA -->
-      <section class="py-12 bg-zinc-100 text-center">
-        <div class="mx-auto text-center py-8 max-w-[860px] text-xl font-semibold">
+      <section class="py-12 px-2 md:px-0 bg-zinc-100">
+        <div class="mx-auto py-8 max-w-[860px] text-xl font-semibold">
           <h2 class="mb-4 text-2xl md:text-4xl font-black tracking-tight text-zinc-950">Requisitos para pedir un préstamo</h2>
           <div class="mt-4">
-            <div class="inline-block text-left">
+            <div class="inline-block">
               <!-- Injected HTML (puedes convertirlo a data structure si prefieres) -->
               <div set:html={requirementsHtml} />
+              <div class="mt-6">
+                <BtnRequest/>
+              </div>
             </div>
           </div>
-          <div class="mt-6">
-            <Button href="/solicitar" variant="primary">¡Solicita ahora!</Button>
-          </div>
+          
         </div>
       </section>
 

@@ -16,7 +16,7 @@ function cleanPhone(t?: string) {
 const tel = cleanPhone(phone);
 const telHref = tel ? `tel:${tel}` : '';
 ---
-<article class="flex flex-col gap-4">
+<article class="flex flex-col gap-4 mx-2 md:mx-0">
   {image ? <img src={image} alt={title ?? 'Imagen'} class="h-[150px] w-full object-cover rounded-xl"/> : null}
   {title ? <h3 class="text-2xl font-bold tracking-tight text-zinc-800">{title}</h3> : null}
   {description ? <p class="text-zinc-600 text-base leading-relaxed">{description}</p> : null}
