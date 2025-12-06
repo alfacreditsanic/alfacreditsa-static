@@ -1,65 +1,20 @@
 ---
-import logo from '../assets/logo-alfa.png';
-import HomeCard from '../components/HomeCard.astro';
+import HomeCard from '../components/HomeCallCenter.astro';
 import Benefits from '../components/Benefits.astro';
 import BranchesGrid from '../components/BranchesGrid.astro';
-import Button from '../components/Button.astro';
+import BtnRequest from './BtnRequest.astro';
+
 import img1 from '../assets/collage-1.jpg';
 import img2 from '../assets/collage-2.webp';
 import img3 from '../assets/collage-3.avif';
-import BtnRequest from './BtnRequest.astro';
 
-const benefitsData = [
-  {
-    title: 'Seguro INISER para clientes mayores (50+)',
-    text: 'Sin costo adicional, con solo solicitar un crédito, clientes mayores de 50 años reciben cobertura de INISER que protege el saldo de su crédito en caso de tragedia, evitando dejar deudas a la familia.'
-  },
-  {
-    title: 'Transparencia total en cuotas y condiciones',
-    text: 'Sin letra pequeña. Explicamos de forma clara montos, cuotas semanales, plazos y costos. Siempre sabrás cuánto pagas y cuándo lo pagas.'
-  },
-  {
-    title: 'Procesos ágiles y acompañamiento personal',
-    text: 'Solicitud simple, visita el mismo día, evaluación rápida y seguimiento por un asesor asignado. Estamos contigo en todo el proceso.'
-  }
-];
-
-const requirementsHtml = `
-  <ul class="inline-block text-left space-y-2">
-    <li>✓ Negocio propio</li>
-    <li>✓ Garantías prendarias</li>
-    <li>✓ 6 meses como mínimo de tener el negocio</li>
-  </ul>
-`;
-
-const branches = [
-  { city: 'Estelí', title: 'Estelí', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
-  { city: 'Juigalpa', title: 'Juigalpa', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
-  { city: 'Managua', title: 'Managua', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
-  { city: 'Managua Norte', title: 'Managua Norte', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
-  { city: 'Rivas', title: 'Rivas', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
-  { city: 'Sébaco', title: 'Sébaco', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
-  { city: 'León', title: 'Leon', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
-  { city: 'Masaya', title: 'Masaya', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
-  { city: 'Jinotepe', title: 'Jinotepe', address: 'Edificio Gonzáles 25vrs. al sur, segunda planta.', phone: '+50558096263' },
-];
-
-const homeCards = [
-  {
-    image: '/images/card-1.jpg',
-    title: 'Asesor personalizado',
-    description: 'Recibirás seguimiento de un asesor durante todo tu proceso.',
-    phone: '+50558096263',
-    buttonText: 'Llamar'
-  },
-  {
-    image: '/images/card-2.jpg',
-    title: 'Atención rápida',
-    description: 'Evaluación y visita el mismo día.',
-    phone: '+50558096263',
-    buttonText: 'Llamar'
-  }
-];
+// Importar datos externos
+import {
+  benefitsData,
+  requirementsHtml,
+  branches,
+  homeCards
+} from '../data/homeData';
 ---
 
       <!-- Header / Archive title logic:
@@ -72,14 +27,14 @@ const homeCards = [
         <div class="md:grid grid-cols-2 gap-3 w-full home-collage hidden">
           <img src={img1.src} alt="Collage 1"/>
           <img src={img2.src} alt="Collage 2"/>
-          <img src={img3.src} alt="Collage 3"/>
+          <img src={img3.src} alt="Collage 3" class="w-full h-48 col-span-2 justify-self-center"/>
         </div>
         <img src={img3.src} alt="Collage 3" class="md:hidden rounded-md"/>
       </Benefits>
 
       <!-- Requisitos + CTA -->
-      <section class="py-12 lg:py-24 px-2 md:px-0 bg-zinc-100" id="requisitos">
-        <div class="mx-auto py-8 max-w-[860px] text-xl font-semibold">
+      <section class="py-4 px-2 md:px-0 bg-zinc-100" id="requisitos">
+        <div class="mx-auto py-8 max-w-[600px] text-xl font-semibold">
           <h2 class="mb-4 text-2xl md:text-4xl font-black tracking-tight text-zinc-950">Requisitos para pedir un préstamo</h2>
           <div class="mt-4">
             <div class="inline-block">

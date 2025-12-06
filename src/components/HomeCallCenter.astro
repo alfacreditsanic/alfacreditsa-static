@@ -1,0 +1,29 @@
+---
+// src/components/HomeCard.astro
+export interface Props {
+  image?: string;
+  title?: string;
+  description?: string;
+  phone?: string;
+  buttonText?: string;
+}
+const { image, title, description, phone, buttonText = 'Llamanos sin compromiso' } = Astro.props as Props;
+
+function cleanPhone(t?: string) {
+  if (!t) return '';
+  return t.replace(/[^\d+]/g, '');
+}
+const tel = cleanPhone(phone);
+const telHref = tel ? `tel:${tel}` : '';
+---
+<article class="flex flex-col gap-4 mx-2 md:mx-0">
+  {title ? <h3 class="text-xl md:text-2xl font-black text-zinc-950">{title}</h3> : null}
+  {description ? <p class="text-lg md:text-xl text-zinc-800 leading-8 text-balance">{description}</p> : null}
+  {telHref ? (
+    <div>
+      <a class="btn-secondary" href={telHref} aria-label={`Llamanos sin compromiso al ${phone}`}>
+        {buttonText}
+      </a>
+    </div>
+  ) : null}
+</article>

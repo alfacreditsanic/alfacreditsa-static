@@ -8,21 +8,9 @@
   
   @layer utilities {
     .home-collage img{
-      @apply w-70 h-70 object-cover rounded-xl shadow-xl transition duration-300 hover:opacity-90 hover:scale-105
-    }
-    .home-collage:nth-child(1) {
-      @apply absolute top-0 left-15 transition duration-500;
-    }
-  
-    .home-collage:nth-child(2) {
-      @apply absolute top-35 left-24 transition duration-500;
-    }
-  
-    .home-collage:nth-child(3) {
-      @apply absolute top-5 left-15 transition duration-500;
+      @apply w-full h-70 object-cover rounded-xl shadow-xl transition duration-300 hover:opacity-90 hover:scale-105
     }
   }
-  
   
   .block-sucursal p{
     @apply -mt-4 text-lg
