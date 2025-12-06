@@ -78,7 +78,7 @@ const homeCards = [
       </Benefits>
 
       <!-- Requisitos + CTA -->
-      <section class="py-12 px-2 md:px-0 bg-zinc-100">
+      <section class="py-12 lg:py-24 px-2 md:px-0 bg-zinc-100" id="requisitos">
         <div class="mx-auto py-8 max-w-[860px] text-xl font-semibold">
           <h2 class="mb-4 text-2xl md:text-4xl font-black tracking-tight text-zinc-950">Requisitos para pedir un préstamo</h2>
           <div class="mt-4">
@@ -98,7 +98,7 @@ const homeCards = [
       <BranchesGrid branches={branches} />
 
       <!-- Home cards (antes widget area con cards) -->
-      <section class="py-12">
+      <section class="py-12" id="contacto">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {homeCards.map((c) => <HomeCard {...c} />)}
         </div>
