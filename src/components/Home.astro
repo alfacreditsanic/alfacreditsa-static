@@ -15,12 +15,15 @@ import {
   branches,
   homeCards
 } from '../data/homeData';
+import BtnFloatWhatsApp from './BtnFloatWhatsApp.astro';
 ---
 
       <!-- Header / Archive title logic:
            En WP comprobabas is_archive/is_search/is_404... aquí puedes usar rutas o props para renderizar distintos títulos.
            Para esta versión estática no renderizo los títulos condicionales. -->
       
+           
+      <BtnFloatWhatsApp/>
       <!-- Benefits + Collage -->
       <Benefits heading="Beneficios al adquirir un crédito con AlfaCredit, S.A." items={benefitsData}>
         <!-- slot: imágenes del collage (ejemplo) -->
