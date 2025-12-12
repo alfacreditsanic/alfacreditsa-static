@@ -1,8 +1,8 @@
 // BENEFICIOS
 export const benefitsData = [
     {
-      title: 'Seguro INISER para clientes mayores (50+)',
-      text: 'Sin costo adicional, con solo solicitar un crédito, clientes mayores de 50 años reciben cobertura de INISER que protege el saldo de su crédito en caso de tragedia, evitando dejar deudas a la familia.'
+      title: 'Seguro INISER',
+      text: 'Sin costo adicional, con solo adquirir un crédito, recibes cobertura de INISER que protege el saldo de tu crédito en caso de tragedia, evitando dejar deudas a la familia.'
     },
     {
       title: 'Transparencia total en cuotas y condiciones',
