@@ -16,6 +16,7 @@ import {
   homeCards
 } from '../data/homeData';
 import BtnFloatWhatsApp from './BtnFloatWhatsApp.astro';
+import FAQ from './FAQ.astro';
 ---
 
       <!-- Header / Archive title logic:
@@ -55,9 +56,11 @@ import BtnFloatWhatsApp from './BtnFloatWhatsApp.astro';
       <!-- Branches -->
       <BranchesGrid branches={branches} />
 
-      <!-- Home cards (antes widget area con cards) -->
+      <!-- Callcenter -->
       <section class="py-12" id="contacto">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {homeCards.map((c) => <HomeCard {...c} />)}
         </div>
       </section>
+
+      <FAQ/>
