@@ -1,3 +1,8 @@
+---
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+---
+
 <!doctype html>
 <html lang="en" class="scroll-smooth">
 	<head>
@@ -15,7 +20,11 @@
 		<title>Alfacredit, S.A. | Créditos Rápidos para Emprendedores, PYMES y Comerciantes en Nicaragua</title>
 	</head>
 	<body>
+		<header>      
+			<Nav/>
+		  </header>  
 		<slot />
+		<Footer/>
 	</body>
 </html>
 
