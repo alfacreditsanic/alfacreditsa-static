@@ -77,7 +77,8 @@ function initialsFromCity(city = '') {
       class="
         grid 
         grid-cols-1
-        md:grid-cols-2
+        sm:grid-cols-2
+        lg:grid-cols-3
         gap-6
         items-start
       "
@@ -85,7 +86,7 @@ function initialsFromCity(city = '') {
       {branches.map((b) => {
         const img = findImageForCity(b.city);
         return (
-          <article class="w-full max-w-[720px] bg-zinc-100 px-2 md:px-4 pb-4 md:pb-6 pt-2 md:pt-4 rounded-2xl border-2 border-white hover:border-zinc-200 hover:bg-zinc-50 transition">
+          <article class="w-full sm:h-full max-w-[720px] bg-zinc-100 px-2 md:px-4 pb-4 md:pb-6 pt-2 md:pt-4 rounded-2xl border-2 border-white hover:border-zinc-200 hover:bg-zinc-50 transition">
             {/* Imagen o placeholder */}
             {img ? (
               <img src={img} alt={`${b.city} - sucursal`} class="w-full h-40 md:h-70 object-cover rounded-lg mb-4" />
