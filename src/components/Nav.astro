@@ -21,21 +21,21 @@ const mainMenu = {
 };
 ---
 
-<nav class="bg-white shadow-md">
-  <div class="flex justify-between md:items-center max-w-7xl mx-auto py-2 pl-2 pr-4 sm:px-4 lg:px-0">
+<nav id="main-nav" class="bg-white shadow-md fixed w-full top-0 z-10 transition-transform duration-300">
+  <div class="flex justify-between items-center max-w-7xl mx-auto py-2 pl-2 pr-4 sm:px-4 lg:px-0">
 
     <!-- Logo -->
-    <div class="logo flex flex-col justify-center items-center z-10">
-      <img src={logo.src} alt="Logo Empresa" width="100" />
-      <div class="flex flex-col scale-90">
-        <span class="pb-0 text-xl font-black">AlfaCredit,S.A.</span>
-        <span class="-mt-2 text-lg">Confiamos en ti...</span>
+    <div id="logo" class="transition-transform duration-300 logo flex flex-col justify-center items-center z-10">
+      <img src={logo.src} alt="Logo Empresa" width="100" class="w-18 md:w-24" />
+      <div class="flex flex-col text-center">
+        <span class="pb-0 text-sm md:text-lg font-black">AlfaCredit,S.A.</span>
+        <span class="-mt-1 text-xs md:text-lg">Confiamos en ti...</span>
       </div>
     </div>
 
-    <button id="menu-btn" class="md:hidden flex items-center font-bold text-zinc-950">
+    <button id="menu-btn" class="h-10 gap-1 md:hidden flex items-center font-bold text-zinc-950">
       Menú
-      <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg class="w-8 h-8 text-gray-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
           d="M4 6h16M4 12h16M4 18h16" />
       </svg>
@@ -57,10 +57,43 @@ const mainMenu = {
 </nav>
 
 <script>
-  const btn = document.getElementById("menu-btn");
-  const menu = document.getElementById("menu");
+const btn = document.getElementById("menu-btn");
+const menu = document.getElementById("menu");
 
-  btn?.addEventListener("click", () => {
-    menu?.classList.toggle("hidden");
-  });
+btn?.addEventListener("click", (e) => {
+  menu?.classList.toggle("hidden");
+});
+
+// Cerrar al hacer click fuera
+document.addEventListener("click", (e) => {
+  if (!menu || !btn) return;
+
+  const target = e.target;
+
+  if (target instanceof Node) {
+    if (!menu.contains(target) && !btn.contains(target)) {
+      menu.classList.add("hidden");
+    }
+  }
+});
+
+
+
+  // hide nav on scroll
+  let lastScrollY = window.scrollY;
+  const nav = document.getElementById("main-nav");
+
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 80) {
+      nav?.classList.add("-translate-y-full");
+    } else {
+      nav?.classList.remove("-translate-y-full");
+    }
+
+    lastScrollY = currentScrollY;
+
+    });
+
 </script>

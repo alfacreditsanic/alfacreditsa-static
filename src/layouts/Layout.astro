@@ -20,10 +20,12 @@ import Nav from "../components/Nav.astro";
 		<title>Alfacredit, S.A. | Créditos Rápidos para Emprendedores, PYMES y Comerciantes en Nicaragua</title>
 	</head>
 	<body>
-		<header>      
+		<header class="relative">
 			<Nav/>
-		  </header>  
-		<slot />
+		</header>  
+		<main class="mt-[104px]">
+			<slot/>
+		</main>
 		<Footer/>
 	</body>
 </html>
