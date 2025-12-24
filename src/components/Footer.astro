@@ -1,3 +1,52 @@
-<footer>
-    <p class="text-center py-8 bg-zinc-100">©2025 AlfaCredit,S.A.</p>
+---
+import Mascota from "../assets/mascota-alfacredit.webp";
+---
+
+<footer class="bg-zinc-100 py-8 pl-4 md:pl-0">
+    <div class="md:flex justify-between max-w-7xl mx-auto">
+        
+        <div class="my-6 text-zinc-950 md:w-4/12 flex">
+            <div class="w-[450px] hidden md:flex items-end">
+                <img src={Mascota.src} alt="Mascota AlfaCredit" width="100" class="w-18 md:w-24" />
+            </div>
+            <div class="">
+                <p class="font-bold">Alfacredit, S.A.</p>
+                <p class="">
+                    Somos una institución financiera nicaragüense legalmente constituida, regulada por la <strong>CONAMI</strong> y la <strong>UAF</strong>, comprometida con la transparencia, la seguridad y la protección de sus clientes.
+                </p>
+            </div>
+        </div>
+        <div class="my-6 text-zinc-950">
+            <p class="font-bold">Enlaces de interés:</p>
+            <ul>
+                <li class="mb-3 md:mb-2"><a class="hover:underline" href="">
+                    Quejas y sugerencias</a>
+                </li>
+                <li class="mb-3 md:mb-2"><a class="hover:underline" href="">
+                    Oportunidad de empleo</a>
+                </li>
+                <li class="mb-3 md:mb-2"><a class="hover:underline" href="https://www.conami.gob.ni/atencion-al-usuario/conoce-tus-derechos/" class="">
+                    Derecho de usuarios, por CONAMI</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="my-6 text-zinc-950">
+            <p class="font-bold">Sobre el sitio web:</p>
+            <ul>
+                <li class="mb-3 md:mb-2"><a class="hover:underline" href="/about">
+                    Quiénes somos</a>
+                </li>
+                <li class="mb-3 md:mb-2"><a class="hover:underline" href="">
+                    Política de Cookies</a>
+                </li>
+                <li class="mb-3 md:mb-2"><a class="hover:underline" href="">
+                    Política de privacidad</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="">
+        <p class="text-center pt-8 bg-zinc-100">©2025 AlfaCredit,S.A. Todos los derechos reservados.</p>
+    </div>
 </footer>
