@@ -27,3 +27,6 @@
     @apply inline-flex py-1.5 text-lg font-bold transition text-zinc-950 underline items-center
   }
   
+  .paragraph-block p {
+    @apply mb-3
+  }
