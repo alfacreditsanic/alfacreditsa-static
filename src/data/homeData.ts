@@ -1,10 +1,6 @@
 // BENEFICIOS
 export const benefitsData = [
     {
-      title: 'Seguro INISER',
-      text: 'Sin costo adicional, con solo adquirir un crédito, recibes cobertura de INISER que protege el saldo de tu crédito en caso de tragedia, evitando dejar deudas a la familia.'
-    },
-    {
       title: 'Transparencia total en cuotas y condiciones',
       text: 'Sin letra pequeña. Explicamos de forma clara montos, cuotas semanales, plazos y costos. Siempre sabrás cuánto pagas y cuándo lo pagas.'
     },
