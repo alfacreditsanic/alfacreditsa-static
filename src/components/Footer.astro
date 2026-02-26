@@ -1,5 +1,21 @@
 ---
 import Mascota from "../assets/mascota-alfacredit.webp";
+
+import Facebook from "../assets/social/alfacredit-en-facebook.svg";
+import Twitter from "../assets/social/alfacredit-en-twitter.svg";
+import Youtube from "../assets/social/alfacredit-en-youtube.svg";
+import Linkedin from "../assets/social/alfacredit-en-linkedin.svg";
+import Tiktok from "../assets/social/alfacredit-en-tiktok.svg";
+import Instagram from "../assets/social/alfacredit-en-instagram.svg";
+
+const socialLinks = [
+    { name: "TikTok", href: "https://tiktok.com/@alfacreditsa", icon: Tiktok },
+  { name: "Facebook", href: "https://facebook.com/alfacreditsa", icon: Facebook },
+  { name: "Instagram", href: "https://instagram.com/alfacreditsa", icon: Instagram },
+  { name: "YouTube", href: "https://youtube.com/alfacredit_sa", icon: Youtube },
+  { name: "Twitter", href: "https://twitter.com/alfacreditsa", icon: Twitter },
+  //{ name: "LinkedIn", href: "https://linkedin.com/company/alfacreditsa", icon: Linkedin },
+];
 ---
 
 <footer class="bg-zinc-100 py-8 pl-4 md:pl-0">
@@ -44,6 +60,20 @@ import Mascota from "../assets/mascota-alfacredit.webp";
                     Política de privacidad</a>
                 </li>
             </ul>
+            <p class="font-bold mb-2">Redes sociales:</p>
+            <div class="flex gap-2">
+                    {socialLinks.map(({ name, href, icon: Icon }) => (
+                    <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={name}
+                        class="group"
+                    >
+                        <Icon class="w-8 h-8 fill-zinc-950 transition duration-300 group-hover:opacity-90" />
+                    </a>
+                    ))}
+                </div>
         </div>
     </div>
     <div class="">
