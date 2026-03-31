@@ -1,0 +1,78 @@
+---
+interface Props {
+  id: string;
+  titulo: string;
+  area: string;
+  sucursal: string;
+  tipo: string;
+  coverImage: string;
+  activo: boolean;
+  createdAt: string;
+}
+
+const { id, titulo, area, sucursal, tipo, coverImage, activo, createdAt } = Astro.props;
+
+const fechaPublicacion = new Date(createdAt).toLocaleDateString("es-NI", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<article class="vacante-card group bg-white rounded-2xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+  <!-- Cover Image -->
+  <div class="relative h-44 overflow-hidden">
+    <img
+      src={coverImage}
+      alt={`Vacante: ${titulo}`}
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+    <!-- Badge activo/inactivo -->
+    <span
+      class={`absolute top-3 right-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
+        activo
+          ? "bg-emerald-100 text-emerald-700 border border-emerald-200"
+          : "bg-zinc-200 text-zinc-500 border border-zinc-300"
+      }`}
+    >
+      <span class={`w-1.5 h-1.5 rounded-full ${activo ? "bg-emerald-500" : "bg-zinc-400"}`}></span>
+      {activo ? "Abierta" : "Cerrada"}
+    </span>
+  </div>
+
+  <!-- Content -->
+  <div class="p-5 flex flex-col flex-1">
+    <!-- Meta chips -->
+    <div class="flex flex-wrap gap-2 mb-3">
+      <span class="bg-[#f0f4ff] text-primary text-xs font-medium px-2.5 py-1 rounded-full">{area}</span>
+      <span class="bg-zinc-100 text-zinc-600 text-xs font-medium px-2.5 py-1 rounded-full">{tipo}</span>
+    </div>
+
+    <h2 class="text-lg font-bold text-zinc-900 mb-1 leading-tight">{titulo}</h2>
+    <p class="text-sm text-zinc-500 flex items-center gap-1 mb-4">
+      <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      {sucursal}
+    </p>
+
+    <p class="text-xs text-zinc-400 mt-auto mb-4">Publicado el {fechaPublicacion}</p>
+
+    <a
+      href={`/empleos/${id}`}
+      class={`w-full text-center py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+        activo
+          ? "bg-primary text-white hover:opacity-90 hover:shadow-md"
+          : "bg-zinc-100 text-zinc-400 cursor-not-allowed pointer-events-none"
+      }`}
+      aria-disabled={!activo}
+    >
+      {activo ? "Ver vacante →" : "Vacante cerrada"}
+    </a>
+  </div>
+</article>

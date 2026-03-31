@@ -19,6 +19,10 @@ const mainMenu = {
     label: "Contacto",
     href: "/contact",
   },
+  empleos: {
+    label: "Empleos",
+    href: "/empleos",
+  },
 };
 ---
 
@@ -46,6 +50,7 @@ const mainMenu = {
       <a href="/#sucursales" class="block text-gray-700 hover:underline text-right font-semibold py-2">Sucursales</a>
       <a href="/#contacto" class="block text-gray-700 hover:underline text-right font-semibold py-2">Contacto</a>
       <a href={mainMenu.about.href} class="block text-gray-700 hover:underline text-right font-semibold py-2">Nosotros</a>
+      <a href={mainMenu.empleos.href} class="block text-primary hover:underline text-right font-semibold py-2">Empleos</a>
     </div>
   </div>
 </nav>

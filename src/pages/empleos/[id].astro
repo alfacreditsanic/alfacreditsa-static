@@ -1,0 +1,198 @@
+---
+import "../../styles/globals.css";
+import Layout from "../../layouts/Layout.astro";
+import vacantesData from "../../data/vacantes.json";
+
+export async function getStaticPaths() {
+  return vacantesData.map((vacante) => ({
+    params: { id: vacante.id },
+    props: { vacante },
+  }));
+}
+
+const { vacante } = Astro.props;
+
+const {
+  titulo,
+  area,
+  sucursal,
+  tipo,
+  coverImage,
+  descripcion,
+  responsabilidades,
+  requisitos,
+  activo,
+  formUrl,
+  createdAt,
+  updatedAt,
+} = vacante;
+
+const fechaPublicacion = new Date(createdAt).toLocaleDateString("es-NI", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const fechaActualizacion = new Date(updatedAt).toLocaleDateString("es-NI", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Layout>
+  <!-- Hero de la vacante -->
+  <section class="relative h-64 md:h-80 overflow-hidden">
+    <img
+      src={coverImage}
+      alt={`Vacante: ${titulo}`}
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
+
+    <div class="absolute inset-0 flex flex-col justify-end max-w-5xl mx-auto px-4 sm:px-6 pb-8">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-white/70 text-sm mb-3" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Inicio</a>
+        <span>/</span>
+        <a href="/empleos" class="hover:text-white transition-colors">Empleos</a>
+        <span>/</span>
+        <span class="text-white truncate">{titulo}</span>
+      </nav>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <h1 class="text-3xl md:text-4xl font-black text-white leading-tight w-full">{titulo}</h1>
+        <span
+          class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-sm font-semibold ${
+            activo
+              ? "bg-emerald-100 text-emerald-700"
+              : "bg-zinc-200 text-zinc-600"
+          }`}
+        >
+          <span class={`w-2 h-2 rounded-full ${activo ? "bg-emerald-500" : "bg-zinc-400"}`}></span>
+          {activo ? "Vacante abierta" : "Vacante cerrada"}
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido principal -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Columna principal -->
+      <div class="md:col-span-2 space-y-8">
+
+        <!-- Descripción -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-zinc-100">
+          <h2 class="text-xl font-bold text-zinc-900 mb-3">Descripción del puesto</h2>
+          <p class="text-zinc-600 leading-relaxed">{descripcion}</p>
+        </div>
+
+        <!-- Responsabilidades -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-zinc-100">
+          <h2 class="text-xl font-bold text-zinc-900 mb-4">Responsabilidades</h2>
+          <ul class="space-y-3">
+            {responsabilidades.map((item) => (
+              <li class="flex items-start gap-3 text-zinc-600">
+                <span class="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-[#eef1fb] flex items-center justify-center">
+                  <svg class="w-3 h-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Requisitos -->
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-zinc-100">
+          <h2 class="text-xl font-bold text-zinc-900 mb-4">Requisitos</h2>
+          <ul class="space-y-3">
+            {requisitos.map((item) => (
+              <li class="flex items-start gap-3 text-zinc-600">
+                <span class="mt-1 flex-shrink-0 w-5 h-5 rounded-full bg-zinc-100 flex items-center justify-center">
+                  <svg class="w-3 h-3 text-zinc-500" fill="currentColor" viewBox="0 0 8 8">
+                    <circle cx="4" cy="4" r="3" />
+                  </svg>
+                </span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Columna lateral -->
+      <aside class="space-y-5">
+
+        <!-- Resumen de la vacante -->
+        <div class="bg-white rounded-2xl p-5 shadow-sm border border-zinc-100 sticky top-28">
+          <h3 class="text-base font-bold text-zinc-900 mb-4">Resumen</h3>
+          <dl class="space-y-3 text-sm">
+            <div>
+              <dt class="text-zinc-400 text-xs uppercase tracking-wide font-medium mb-0.5">Área</dt>
+              <dd class="text-zinc-700 font-medium">{area}</dd>
+            </div>
+            <div>
+              <dt class="text-zinc-400 text-xs uppercase tracking-wide font-medium mb-0.5">Sucursal</dt>
+              <dd class="text-zinc-700 font-medium">{sucursal}</dd>
+            </div>
+            <div>
+              <dt class="text-zinc-400 text-xs uppercase tracking-wide font-medium mb-0.5">Tipo de jornada</dt>
+              <dd class="text-zinc-700 font-medium">{tipo}</dd>
+            </div>
+            <div>
+              <dt class="text-zinc-400 text-xs uppercase tracking-wide font-medium mb-0.5">Publicada</dt>
+              <dd class="text-zinc-700">{fechaPublicacion}</dd>
+            </div>
+            <div>
+              <dt class="text-zinc-400 text-xs uppercase tracking-wide font-medium mb-0.5">Última actualización</dt>
+              <dd class="text-zinc-700">{fechaActualizacion}</dd>
+            </div>
+          </dl>
+
+          <!-- Acción -->
+          <div class="mt-6">
+            {activo ? (
+              <a
+                id="btn-aplicar"
+                href={formUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full text-center bg-primary hover:opacity-90 text-white font-bold py-3 px-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5"
+              >
+                Aplicar a esta vacante →
+              </a>
+              <p class="text-xs text-zinc-400 text-center mt-2">Serás redirigido al formulario de prospección</p>
+            ) : (
+              <div class="bg-zinc-50 border border-zinc-200 rounded-xl p-4 text-center">
+                <svg class="w-8 h-8 text-zinc-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                <p class="text-sm font-semibold text-zinc-600">Esta vacante está cerrada</p>
+                <p class="text-xs text-zinc-400 mt-1">Ya no se aceptan nuevas postulaciones para este puesto.</p>
+              </div>
+            )}
+          </div>
+
+          <div class="mt-4 pt-4 border-t border-zinc-100">
+            <a
+              href="/empleos"
+              class="flex items-center justify-center gap-2 text-sm text-primary font-medium transition-colors"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+              </svg>
+              Ver todas las vacantes
+            </a>
+          </div>
+        </div>
+
+      </aside>
+    </div>
+  </section>
+</Layout>

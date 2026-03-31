@@ -1,0 +1,147 @@
+---
+import "../styles/globals.css";
+import Layout from "../layouts/Layout.astro";
+import VacanteCard from "../components/empleos/VacanteCard.astro";
+import vacantesData from "../data/vacantes.json";
+
+const vacantesAbiertas = vacantesData.filter((v) => v.activo);
+const vacantesTodas = vacantesData;
+const totalAbiertas = vacantesAbiertas.length;
+---
+
+<Layout>
+  <!-- Hero -->
+  <section class="bg-linear-to-br from-green-600 via-green-400 to-green-500 py-16 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <span class="inline-block bg-amber-300 text-amber-900 text-sm font-semibold px-4 py-1.5 rounded-full mb-4 border border-white/20">
+        Únete a nuestro equipo
+      </span>
+      <h1 class="text-4xl md:text-5xl font-black text-zinc-950 mb-4 leading-tight">
+        Oportunidades de <br class="hidden md:block" />Empleo
+      </h1>
+      <p class="text-zinc-950 font-semibold text-lg max-w-2xl mx-auto mb-8">
+        En AlfaCredit creemos en el talento humano como motor de crecimiento. Sé parte de una institución financiera comprometida con Nicaragua.
+      </p>
+
+      <!-- Stats rápidos -->
+      <div class="flex flex-wrap justify-center gap-6 mt-6">
+        <div class="bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-center backdrop-blur-sm">
+          <p class="text-3xl font-black text-zinc-950">{totalAbiertas}</p>
+          <p class="text-zinc-950 text-sm font-semibold mt-1">{totalAbiertas === 1 ? "Vacante abierta" : "Vacantes abiertas"}</p>
+        </div>
+        <div class="bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-center backdrop-blur-sm">
+          <p class="text-3xl font-black text-zinc-950">{vacantesTodas.length}</p>
+          <p class="text-zinc-950 text-sm font-semibold mt-1">Publicaciones totales</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Listado de vacantes -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+
+    <!-- Tabs filter -->
+    <div class="flex items-center gap-3 mb-8 border-b border-zinc-200 pb-4">
+      <button
+        id="tab-abiertas"
+        class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-primary text-white"
+        data-filter="abiertas"
+      >
+        Abiertas
+        <span class="ml-1.5 bg-white/20 px-1.5 py-0.5 rounded-full text-xs">{totalAbiertas}</span>
+      </button>
+      <button
+        id="tab-todas"
+        class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-zinc-100 text-zinc-600 hover:opacity-90"
+        data-filter="todas"
+      >
+        Todas
+        <span class="ml-1.5 bg-white/20 px-1.5 py-0.5 rounded-full text-xs">{vacantesTodas.length}</span>
+      </button>
+    </div>
+
+    <!-- Cards grid -->
+    {vacantesAbiertas.length === 0 && (
+      <div id="empty-state" class="text-center py-16">
+        <svg class="w-16 h-16 text-zinc-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <h3 class="text-lg font-bold text-zinc-600 mb-2">No hay vacantes abiertas en este momento</h3>
+        <p class="text-zinc-400 text-sm">Estamos trabajando en nuevas oportunidades. ¡Vuelve pronto!</p>
+      </div>
+    )}
+
+    <div id="grid-vacantes" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {vacantesTodas.map((v) => (
+        <div
+          class="vacante-item"
+          data-activo={v.activo ? "true" : "false"}
+        >
+          <VacanteCard
+            id={v.id}
+            titulo={v.titulo}
+            area={v.area}
+            sucursal={v.sucursal}
+            tipo={v.tipo}
+            coverImage={v.coverImage}
+            activo={v.activo}
+            createdAt={v.createdAt}
+          />
+        </div>
+      ))}
+    </div>
+
+    <!-- Nota informativa -->
+    <div class="mt-12 bg-[#f0f4ff] border border-[#d0d9f7] rounded-2xl p-6 flex flex-col sm:flex-row gap-4 items-start">
+      <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary flex items-center justify-center mt-0.5">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <div>
+        <p class="font-semibold text-zinc-800 mb-1">¿No encontrás la vacante ideal?</p>
+        <p class="text-zinc-600 text-sm">
+          Podés escribirnos a través de nuestras redes sociales o visitar directamente cualquiera de nuestras sucursales. Te orientaremos con gusto.
+        </p>
+      </div>
+    </div>
+
+  </section>
+</Layout>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
+  const items = document.querySelectorAll<HTMLDivElement>(".vacante-item");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      // Update active tab styles
+      tabs.forEach((t) => {
+        t.classList.remove("bg-primary", "text-white");
+        t.classList.add("bg-zinc-100", "text-zinc-600");
+      });
+      tab.classList.remove("bg-zinc-100", "text-zinc-600");
+      tab.classList.add("bg-primary", "text-white");
+
+      const filter = tab.dataset.filter;
+
+      items.forEach((item) => {
+        if (filter === "todas") {
+          item.style.display = "block";
+        } else {
+          // "abiertas"
+          item.style.display = item.dataset.activo === "true" ? "block" : "none";
+        }
+      });
+    });
+  });
+
+  // On load: show only open vacancies by default
+  items.forEach((item) => {
+    if (item.dataset.activo !== "true") {
+      item.style.display = "none";
+    }
+  });
+</script>

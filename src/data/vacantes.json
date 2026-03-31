@@ -1,0 +1,73 @@
+[
+  {
+    "id": "auditor-interno-esteli-2026",
+    "titulo": "Auditor Interno",
+    "area": "Auditoría",
+    "sucursal": "Estelí",
+    "tipo": "Tiempo completo",
+    "coverImage": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80",
+    "descripcion": "En AlfaCredit, S.A. seguimos creciendo y buscamos un profesional altamente capacitado para unirse a nuestro equipo como Auditor Interno. Buscamos talento con sólidos conocimientos en la normativa de auditoría interna de CONAMI y experiencia en el sector de microfinanzas.",
+    "responsabilidades": [
+      "Garantizar el cumplimiento de normativas de auditoría interna.",
+      "Auditar y evaluar procesos en el sector de microfinanzas.",
+      "Asegurar la correcta aplicación de la normativa de CONAMI.",
+      "Identificar riesgos y proponer mejoras en los controles internos."
+    ],
+    "requisitos": [
+      "CPA (Contador Público Autorizado).",
+      "Mínimo 5 años de experiencia comprobable en microfinanzas.",
+      "Conocimiento en normativa de CONAMI."
+    ],
+    "activo": true,
+    "formUrl": "https://wa.me/50583528828",
+    "createdAt": "2026-03-30T10:00:00-06:00",
+    "updatedAt": "2026-03-30T10:00:00-06:00"
+  },
+  {
+    "id": "gerente-sucursal-esteli-2026",
+    "titulo": "Gerente de Sucursal",
+    "area": "Operaciones",
+    "sucursal": "Estelí",
+    "tipo": "Tiempo completo",
+    "coverImage": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80",
+    "descripcion": "En AlfaCredit S.A. seguimos creciendo y buscamos un profesional estratégico para liderar nuestra sucursal en Estelí. Si tienes sólida experiencia en el sector financiero, habilidades de gestión de equipos y buscas dar el siguiente gran paso en tu carrera, ¡te estamos esperando!",
+    "responsabilidades": [
+      "Liderar la sucursal de manera estratégica.",
+      "Gestionar eficientemente los equipos de trabajo.",
+      "Alcanzar las metas comerciales y orientar a resultados a la sucursal.",
+      "Supervisar las operaciones financieras y administrativas de la sucursal."
+    ],
+    "requisitos": [
+      "Experiencia comprobable en el sector financiero (mínimo 3 años).",
+      "Habilidades de liderazgo y orientación a resultados.",
+      "Residir en Estelí y poseer motocicleta."
+    ],
+    "activo": true,
+    "formUrl": "https://wa.me/50583528828",
+    "createdAt": "2026-03-30T10:00:00-06:00",
+    "updatedAt": "2026-03-30T10:00:00-06:00"
+  },
+  {
+    "id": "especialista-soporte-it-esteli-2026",
+    "titulo": "Especialista de Soporte IT",
+    "area": "Tecnología",
+    "sucursal": "Estelí",
+    "tipo": "Tiempo completo",
+    "coverImage": "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80",
+    "descripcion": "¿Eres la persona que siempre encuentra la solución cuando la tecnología presenta fallas? ¿Te apasionan las redes, el hardware y la resolución eficiente de problemas? En AlfaCredit S.A. estamos en la búsqueda de nuestro próximo Especialista de Soporte IT.",
+    "responsabilidades": [
+      "Brindar soporte técnico y resolución eficiente de problemas.",
+      "Gestión y mantenimiento de redes y hardware.",
+      "Asistir a los usuarios y mantener operativos los sistemas tecnológicos de la empresa."
+    ],
+    "requisitos": [
+      "Título en Ingeniería en Sistemas, Computación o carreras afines.",
+      "Mínimo 2 años de experiencia en soporte técnico.",
+      "Actitud proactiva, capacidad de análisis y gusto por los retos."
+    ],
+    "activo": true,
+    "formUrl": "https://wa.me/50583528828",
+    "createdAt": "2026-03-30T10:00:00-06:00",
+    "updatedAt": "2026-03-30T10:00:00-06:00"
+  }
+]
