@@ -42,7 +42,7 @@
       "Habilidades de liderazgo y orientación a resultados.",
       "Residir en Estelí y poseer motocicleta."
     ],
-    "activo": true,
+    "activo": false,
     "formUrl": "https://wa.me/50583528828",
     "createdAt": "2026-03-30T10:00:00-06:00",
     "updatedAt": "2026-03-30T10:00:00-06:00"
@@ -69,5 +69,78 @@
     "formUrl": "https://wa.me/50583528828",
     "createdAt": "2026-03-30T10:00:00-06:00",
     "updatedAt": "2026-03-30T10:00:00-06:00"
+  },
+  {
+    "id": "supervisor-credito-sebaco-2026",
+    "titulo": "Supervisor de Crédito",
+    "area": "Crédito",
+    "sucursal": "Sebaco",
+    "tipo": "Tiempo completo",
+    "coverImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+    "descripcion": "En AlfaCredit, S.A. estamos en la búsqueda de nuestro próximo Supervisor de Crédito para unirse a nuestro equipo líder. Si eres un profesional apasionado por el sector financiero y tienes experiencia guiando equipos hacia el éxito, ¡queremos conocerte!",
+    "responsabilidades": [
+      "Guiar equipos hacia el éxito en el sector financiero.",
+      "Supervisar operaciones de crédito.",
+      "Asegurar el cumplimiento de políticas y procedimientos."
+    ],
+    "requisitos": [
+      "Licenciatura en Contaduría, Administración de Empresas o carreras afines.",
+      "Más de 2 años de experiencia comprobable en microfinanzas.",
+      "Capacidad demostrada en liderazgo y gestión de equipos.",
+      "Excelentes actitudes, ética y valores."
+    ],
+    "activo": true,
+    "formUrl": "https://wa.me/50583528828",
+    "createdAt": "2026-04-29T10:00:00-06:00",
+    "updatedAt": "2026-04-29T10:00:00-06:00"
+  },
+  {
+    "id": "supervisor-credito-esteli-2026",
+    "titulo": "Supervisor de Crédito",
+    "area": "Crédito",
+    "sucursal": "Estelí",
+    "tipo": "Tiempo completo",
+    "coverImage": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80",
+    "descripcion": "En AlfaCredit, S.A. estamos en la búsqueda de nuestro próximo Supervisor de Crédito para unirse a nuestro equipo líder. Si eres un profesional apasionado por el sector financiero y tienes experiencia guiando equipos hacia el éxito, ¡queremos conocerte!",
+    "responsabilidades": [
+      "Guiar equipos hacia el éxito en el sector financiero.",
+      "Supervisar operaciones de crédito.",
+      "Asegurar el cumplimiento de políticas y procedimientos."
+    ],
+    "requisitos": [
+      "Licenciatura en Contaduría, Administración de Empresas o carreras afines.",
+      "Más de 2 años de experiencia comprobable en microfinanzas.",
+      "Capacidad demostrada en liderazgo y gestión de equipos.",
+      "Excelentes actitudes, ética y valores."
+    ],
+    "activo": true,
+    "formUrl": "https://wa.me/50583528828",
+    "createdAt": "2026-04-29T10:00:00-06:00",
+    "updatedAt": "2026-04-29T10:00:00-06:00"
+  },
+  {
+    "id": "gerente-sucursal-managua-2026",
+    "titulo": "Gerente de Sucursal",
+    "area": "Operaciones",
+    "sucursal": "Managua",
+    "tipo": "Tiempo completo",
+    "coverImage": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&q=80",
+    "descripcion": "En ALFACREDIT S.A. estamos buscando un Gerente de Sucursal altamente motivado y orientado a resultados para unirse a nuestro equipo. Si tienes pasión por el sector financiero, visión estratégica y experiencia en el manejo de personal, ¡te estamos buscando!",
+    "responsabilidades": [
+      "Liderar la sucursal de manera estratégica.",
+      "Gestionar eficientemente los equipos de trabajo.",
+      "Alcanzar las metas comerciales y orientar a resultados.",
+      "Supervisar las operaciones financieras y administrativas."
+    ],
+    "requisitos": [
+      "Licenciatura en Administración de Empresas, Economía, Mercadotecnia, Contaduría Pública y Finanzas o carreras afines.",
+      "Experiencia mínima comprobable de 3 años en el sector financiero.",
+      "Poseer motocicleta (indispensable).",
+      "Sólidas habilidades de liderazgo, orientación a resultados y excelente manejo de personal."
+    ],
+    "activo": true,
+    "formUrl": "https://wa.me/50583528828",
+    "createdAt": "2026-04-29T10:00:00-06:00",
+    "updatedAt": "2026-04-29T10:00:00-06:00"
   }
 ]

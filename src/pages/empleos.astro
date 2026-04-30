@@ -4,8 +4,9 @@ import Layout from "../layouts/Layout.astro";
 import VacanteCard from "../components/empleos/VacanteCard.astro";
 import vacantesData from "../data/vacantes.json";
 
-const vacantesAbiertas = vacantesData.filter((v) => v.activo);
-const vacantesTodas = vacantesData;
+const vacantesSorted = vacantesData.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+const vacantesAbiertas = vacantesSorted.filter((v) => v.activo);
+const vacantesTodas = vacantesSorted;
 const totalAbiertas = vacantesAbiertas.length;
 ---
 
