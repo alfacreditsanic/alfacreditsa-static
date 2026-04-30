@@ -3,7 +3,7 @@
   }
   
   p{
-    @apply text-lg
+    @apply text-base
   }
   
   @layer utilities {
@@ -21,8 +21,8 @@
   
   .btn-primary {
     @apply inline-flex 
-    xl:text-lg transition hover:bg-primary/90 !no-underline
-    px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-primary text-white
+    text-lg transition hover:bg-primary/90
+    px-4 py-2 rounded-lg font-semibold duration-150 bg-primary text-white
   }
   
   .btn-secondary {

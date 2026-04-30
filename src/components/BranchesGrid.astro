@@ -141,20 +141,25 @@ function initialsFromCity(city = '') {
           ✕
         </button>
 
-        <div class="aspect-video bg-zinc-200">
+        <div class="w-full bg-zinc-200 sm:aspect-video min-h-[500px]">
           <iframe
             id="branch-map-iframe"
             src=""
-            class="w-full h-full"
+            class="w-full h-full sm:aspect-video min-h-[500px]"
             frameborder="0"
             allowfullscreen=""
             loading="lazy"
           ></iframe>
         </div>
 
-        <div class="p-6">
-          <h3 id="branch-map-title" class="text-xl font-bold text-zinc-950"></h3>
-          <p id="branch-map-coords" class="mt-1 text-sm text-zinc-600"></p>
+        <div class="p-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h3 id="branch-map-title" class="text-xl font-bold text-zinc-950"></h3>
+            <p id="branch-map-coords" class="mt-1 text-sm text-zinc-600"></p>
+          </div>
+          <a id="branch-map-waze" href="#" target="_blank" rel="noopener" class="btn-primary mt-4 sm:mt-0 flex-shrink-0">
+            Abrir en Waze
+          </a>
         </div>
       </div>
     </div>
@@ -167,13 +172,15 @@ function initialsFromCity(city = '') {
   const title = document.getElementById('branch-map-title') as HTMLElement | null;
   const coordsText = document.getElementById('branch-map-coords') as HTMLElement | null;
   const closeBtn = document.getElementById('branch-map-close') as HTMLElement | null;
+  const wazeBtn = document.getElementById('branch-map-waze') as HTMLAnchorElement | null;
 
   function openMapModal(city: string, lat: string, lng: string) {
-    if (!modal || !iframe || !title || !coordsText) return;
+    if (!modal || !iframe || !title || !coordsText || !wazeBtn) return;
     const src = `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
     title.textContent = `Sucursal ${city}`;
     coordsText.textContent = `Coordenadas: ${lat}, ${lng}`;
     iframe.src = src;
+    wazeBtn.href = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
     modal.classList.remove('hidden');
     modal.classList.add('flex');
   }
