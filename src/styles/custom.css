@@ -20,11 +20,13 @@
   }
   
   .btn-primary {
-    @apply inline-flex rounded-full px-4 py-1.5 text-lg font-bold transition bg-primary text-white hover:bg-primary/90 !no-underline 
+    @apply inline-flex 
+    xl:text-lg transition hover:bg-primary/90 !no-underline
+    px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-primary text-white
   }
   
   .btn-secondary {
-    @apply inline-flex py-1.5 text-lg font-bold transition text-zinc-950 underline items-center
+    @apply inline-flex py-1.5 text-lg font-semibold transition text-zinc-950 underline items-center
   }
   
   .paragraph-block p {

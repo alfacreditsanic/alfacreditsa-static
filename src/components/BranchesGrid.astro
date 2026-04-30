@@ -5,6 +5,7 @@ export interface Branch {
   title?: string;
   address?: string;
   phone?: string;
+  coords?: { lat: number; lng: number };
 }
 
 const { branches = [] } = Astro.props as { branches: Branch[] };
@@ -95,8 +96,21 @@ function initialsFromCity(city = '') {
                 {initialsFromCity(b.city)}
               </div>
             )}
-
-            <h3 class="text-xl md:text-2xl font-black text-zinc-950">{b.city}</h3>
+            
+              <div class="flex justify-between">
+                
+            <h3 class="text-xl md:text-2xl font-black text-zinc-950 uppercase">{b.city}</h3>
+            {b.coords && (
+              <button
+                class="font-bold text-sm cursor-pointer hover:opacity-80 transition duration-150 hover:underline"
+                data-branch-map={b.city}
+                data-lat={b.coords.lat}
+                data-lng={b.coords.lng}
+              >
+                🗺️​VER EN MAPA
+              </button>
+            )}
+              </div>
 
             {b.address && <p class="text-lg md:text-xl text-zinc-800 mt-2 leading-relaxed">{b.address}</p>}
 
@@ -109,5 +123,82 @@ function initialsFromCity(city = '') {
         );
       })}
     </div>
+
+    <div
+      id="branch-map-modal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="branch-map-title"
+    >
+      <div class="relative w-full max-w-5xl rounded-3xl bg-white shadow-2xl overflow-hidden">
+        <button
+          id="branch-map-close"
+          type="button"
+          class="absolute right-4 top-4 rounded-full bg-zinc-900/90 text-white w-10 h-10 flex items-center justify-center hover:bg-zinc-900"
+          aria-label="Cerrar mapa"
+        >
+          ✕
+        </button>
+
+        <div class="aspect-video bg-zinc-200">
+          <iframe
+            id="branch-map-iframe"
+            src=""
+            class="w-full h-full"
+            frameborder="0"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <div class="p-6">
+          <h3 id="branch-map-title" class="text-xl font-bold text-zinc-950"></h3>
+          <p id="branch-map-coords" class="mt-1 text-sm text-zinc-600"></p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+<script>
+  const modal = document.getElementById('branch-map-modal') as HTMLElement | null;
+  const iframe = document.getElementById('branch-map-iframe') as HTMLIFrameElement | null;
+  const title = document.getElementById('branch-map-title') as HTMLElement | null;
+  const coordsText = document.getElementById('branch-map-coords') as HTMLElement | null;
+  const closeBtn = document.getElementById('branch-map-close') as HTMLElement | null;
+
+  function openMapModal(city: string, lat: string, lng: string) {
+    if (!modal || !iframe || !title || !coordsText) return;
+    const src = `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
+    title.textContent = `Sucursal ${city}`;
+    coordsText.textContent = `Coordenadas: ${lat}, ${lng}`;
+    iframe.src = src;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeMapModal() {
+    if (!modal || !iframe) return;
+    iframe.src = '';
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+  }
+
+  document.querySelectorAll('[data-branch-map]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const city = button.getAttribute('data-branch-map') ?? '';
+      const lat = button.getAttribute('data-lat') ?? '';
+      const lng = button.getAttribute('data-lng') ?? '';
+      if (!city || !lat || !lng) return;
+      openMapModal(city, lat, lng);
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeMapModal);
+  modal?.addEventListener('click', (event) => {
+    if (event.target === modal) {
+      closeMapModal();
+    }
+  });
+</script>
