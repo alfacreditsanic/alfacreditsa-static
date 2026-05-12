@@ -20,7 +20,7 @@
   }
   
   .btn-primary {
-    @apply inline-flex w-full text-center bg-primary hover:opacity-90 text-white text-lg font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5
+    @apply w-full text-center bg-primary hover:opacity-90 text-white text-lg font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5
   }
   
   .btn-secondary {
