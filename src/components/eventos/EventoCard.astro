@@ -1,0 +1,83 @@
+---
+interface Props {
+  id: string;
+  titulo: string;
+  descripcion: string;
+  coverImage: string;
+  fecha: string;
+  ubicacion: string;
+  activo: boolean;
+  createdAt: string;
+}
+
+const { id, titulo, descripcion, coverImage, fecha, ubicacion, activo, createdAt } = Astro.props;
+
+const fechaCreacion = new Date(createdAt).toLocaleDateString("es-NI", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<article class="evento-card group bg-white rounded-2xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
+  <!-- Cover Image -->
+  <a href={`/eventos/${id}`} class="relative h-48 overflow-hidden block">
+    <img
+      src={coverImage}
+      alt={`Evento: ${titulo}`}
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+    
+    <!-- Badge activo/finalizado -->
+    <span
+      class={`absolute top-3 right-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${
+        activo
+          ? "bg-amber-100 text-amber-700 border border-amber-200"
+          : "bg-zinc-200 text-zinc-500 border border-zinc-300"
+      }`}
+    >
+      <span class={`w-1.5 h-1.5 rounded-full ${activo ? "bg-amber-500" : "bg-zinc-400"}`}></span>
+      {activo ? "Próximamente" : "Finalizado"}
+    </span>
+  </a>
+
+  <!-- Content -->
+  <div class="p-5 flex flex-col flex-1">
+    <div class="flex items-center gap-2 text-primary font-semibold text-xs mb-2 uppercase tracking-wider">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+      </svg>
+      {fecha}
+    </div>
+
+    <a href={`/eventos/${id}`}>
+      <h2 class="text-xl font-bold text-zinc-900 mb-2 leading-tight group-hover:text-primary transition-colors">{titulo}</h2>
+    </a>
+    
+    <p class="text-sm text-zinc-500 line-clamp-3 mb-4">
+      {descripcion}
+    </p>
+
+    <div class="mt-auto pt-4 border-t border-zinc-50 space-y-3">
+      <p class="text-sm text-zinc-500 flex items-center gap-2">
+        <svg class="w-4 h-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        {ubicacion}
+      </p>
+
+      <a
+        href={`/eventos/${id}`}
+        class="inline-flex items-center gap-2 text-primary font-bold text-sm hover:translate-x-1 transition-transform"
+      >
+        Leer más
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,187 @@
+---
+import "../../styles/globals.css";
+import Layout from "../../layouts/Layout.astro";
+import eventosData from "../../data/eventos.json";
+
+export async function getStaticPaths() {
+  return eventosData.map((evento) => ({
+    params: { id: evento.id },
+    props: { evento },
+  }));
+}
+
+const { evento } = Astro.props;
+
+const {
+  titulo,
+  descripcion,
+  coverImage,
+  fecha,
+  ubicacion,
+  activo,
+  detalles,
+  createdAt,
+  updatedAt,
+} = evento;
+
+const fechaCreacion = new Date(createdAt).toLocaleDateString("es-NI", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const fechaActualizacion = new Date(updatedAt).toLocaleDateString("es-NI", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+---
+
+<Layout>
+  <!-- Hero del evento -->
+  <section class="relative h-[400px] md:h-[500px] overflow-hidden">
+    <img
+      src={coverImage}
+      alt={`Evento: ${titulo}`}
+      class="w-full h-full object-cover"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+    <div class="absolute inset-0 flex flex-col justify-end max-w-6xl mx-auto px-4 sm:px-6 pb-12">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-white/70 text-sm mb-4" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-white transition-colors">Inicio</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="/eventos" class="hover:text-white transition-colors">Eventos</a>
+        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="text-white truncate font-medium">{titulo}</span>
+      </nav>
+
+      <div class="space-y-4">
+        <div class="flex flex-wrap items-center gap-3">
+            <span
+              class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${
+                activo
+                  ? "bg-amber-400 text-amber-950"
+                  : "bg-zinc-700 text-zinc-300"
+              }`}
+            >
+              {activo ? "Próximo Evento" : "Evento Finalizado"}
+            </span>
+            <span class="text-white/80 text-sm font-medium flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                Publicado el {fechaCreacion}
+            </span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black text-white leading-[1.1] max-w-4xl">{titulo}</h1>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contenido principal -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+    <div class="grid lg:grid-cols-12 gap-12">
+
+      <!-- Columna principal -->
+      <div class="lg:col-span-8 space-y-12">
+
+        <!-- Descripción -->
+        <article class="prose prose-zinc lg:prose-xl">
+          <h2 class="text-3xl font-black text-zinc-900 mb-6">Sobre el evento</h2>
+          <p class="text-zinc-600 leading-relaxed text-lg whitespace-pre-line">
+            {descripcion}
+          </p>
+        </article>
+
+        <!-- Detalles/Cronograma -->
+        <div class="bg-zinc-50 rounded-3xl p-8 border border-zinc-100 shadow-sm">
+          <h2 class="text-2xl font-black text-zinc-900 mb-6 flex items-center gap-3">
+            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+            ¿Qué esperar de este evento?
+          </h2>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {detalles && detalles.map((item) => (
+              <div class="flex items-start gap-4 p-4 bg-white rounded-2xl border border-zinc-100 shadow-sm hover:shadow-md transition-shadow">
+                <span class="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
+                  <svg class="w-3.5 h-3.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <span class="text-zinc-700 font-medium leading-snug">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Columna lateral: Info rápida -->
+      <aside class="lg:col-span-4">
+        <div class="sticky top-28 space-y-6">
+            
+            <div class="bg-white rounded-3xl p-8 shadow-xl shadow-zinc-200/50 border border-zinc-100">
+                <h3 class="text-xl font-black text-zinc-900 mb-6">Información General</h3>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Fecha y Hora</p>
+                            <p class="text-zinc-900 font-bold text-lg">{fecha}</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-1">Ubicación</p>
+                            <p class="text-zinc-900 font-bold text-lg">{ubicacion}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10">
+                    {activo ? (
+                        <a
+                            href="/contact"
+                            class="block w-full text-center bg-primary hover:bg-blue-700 text-white font-black py-4 px-6 rounded-2xl transition-all duration-300 shadow-lg shadow-blue-200 hover:-translate-y-1"
+                        >
+                            Solicitar Registro →
+                        </a>
+                    ) : (
+                        <div class="bg-zinc-100 rounded-2xl p-4 text-center">
+                            <p class="text-zinc-500 font-bold">Inscripciones cerradas</p>
+                            <p class="text-zinc-400 text-xs mt-1">Este evento ya ha finalizado o alcanzó su cupo máximo.</p>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            <!-- Boton Volver -->
+            <a
+              href="/eventos"
+              class="flex items-center justify-center gap-2 py-4 text-zinc-500 font-bold hover:text-primary transition-colors text-sm"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+              </svg>
+              Volver a todos los eventos
+            </a>
+
+        </div>
+      </aside>
+
+    </div>
+  </section>
+</Layout>

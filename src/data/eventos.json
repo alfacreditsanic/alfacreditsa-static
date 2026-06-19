@@ -1,0 +1,25 @@
+[
+  {
+    "id": "festival-del-hogar-2026",
+    "titulo": "Festival del Hogar AlfaCredit S.A.",
+    "descripcion": "Bienvenido a la campaña donde premiamos tu lealtad y buen comportamiento de pago. Participa y gana espectaculares premios para equipar tu casa: televisores, celulares nuevecitos, bicicletas, licuadoras, cafeteras, planchas, juegos de sartenes, potentes parlantes y muchos electrodomesticos mas.\n\nCondiciones importantes:\nLa regla de oro de la campaña es que solo participan clientes que esten totalmente al dia y sin ningun tipo de mora en sus cuotas. Entre mas pagos a tiempo realices y mas recibos nuevos envies, tendras mayores oportunidades de ganar. Si tienes mora o estas inactivo, es tu oportunidad para ponerte al dia o reactivar tu credito y participar automaticamente.",
+    "coverImage": "/img/evento-festival-del-hogar-alfacredit.webp",
+    "fecha": "10 de Junio al 1 de Agosto, 2026",
+    "ubicacion": "100% digital a través de WhatsApp",
+    "activo": true,
+    "detalles": [
+      "El proceso es 100% digital, rapido y sencillo a traves de WhatsApp.",
+      "Paso 1. Guarda nuestro numero en tus contactos: 87392560.",
+      "Paso 2. Toma una foto clara de tu comprobante mas reciente (pago de cuota, desembolso nuevo o renovacion).",
+      "Paso 3. Envia la foto por WhatsApp con la palabra FESTIVAL.",
+      "Siguenos en nuestras Redes Sociales para ver los sorteos totalmente en vivo cada 15 dias.",
+      "20 de Junio: Primer Sorteo Quincenal del Festival.",
+      "4 de Julio: Segundo Sorteo Quincenal de premios.",
+      "18 de Julio: Tercer Sorteo Quincenal para clientes al dia.",
+      "1 de Agosto: Cierre de Campaña y Sorteo Final.",
+      "Participa ya y suma oportunidades cada vez que canceles tu cuota."
+    ],
+    "createdAt": "2026-06-16T17:35:00-06:00",
+    "updatedAt": "2026-06-16T17:35:00-06:00"
+  }
+]

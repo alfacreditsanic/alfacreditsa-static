@@ -1,0 +1,148 @@
+---
+import "../styles/globals.css";
+import Layout from "../layouts/Layout.astro";
+import EventoCard from "../components/eventos/EventoCard.astro";
+import eventosData from "../data/eventos.json";
+
+const eventosSorted = eventosData.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+const eventosProximos = eventosSorted.filter((e) => e.activo);
+const eventosTodos = eventosSorted;
+const totalProximos = eventosProximos.length;
+---
+
+<Layout>
+  <!-- Hero -->
+  <section class="bg-linear-to-br from-emerald-400 via-emerald-300 to-emerald-400 py-16 px-4">
+    <div class="max-w-5xl mx-auto text-center">
+      <span class="inline-block bg-amber-500 text-white text-sm font-semibold px-4 py-1.5 rounded-full mb-4 border border-white/20 backdrop-blur-sm">
+        Comunidad AlfaCredit
+      </span>
+      <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-4 leading-tight">
+        Nuestros Eventos
+      </h1>
+      <p class="text-slate-900 font-medium text-lg max-w-2xl mx-auto mb-8">
+        Espacios diseñados para el crecimiento de tu negocio y la celebración de nuestros logros compartidos.
+      </p>
+
+      <!-- Stats rápidos -->
+      <div class="flex flex-wrap justify-center gap-6 mt-6">
+        <div class="bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-center backdrop-blur-sm">
+          <p class="text-3xl font-black text-slate-900">{totalProximos}</p>
+          <p class="text-slate-900 text-sm font-semibold mt-1">Eventos próximos</p>
+        </div>
+        <div class="bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-center backdrop-blur-sm">
+          <p class="text-3xl font-black text-slate-900">{eventosTodos.length}</p>
+          <p class="text-slate-900 text-sm font-semibold mt-1">Total acumulado</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Listado de eventos -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+
+    <!-- Tabs filter -->
+    <div class="flex items-center gap-3 mb-8 border-b border-zinc-200 pb-4">
+      <button
+        id="tab-proximos"
+        class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-primary text-white"
+        data-filter="proximos"
+      >
+        Próximos
+        <span class="ml-1.5 bg-white/20 px-1.5 py-0.5 rounded-full text-xs">{totalProximos}</span>
+      </button>
+      <button
+        id="tab-todos"
+        class="tab-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 bg-zinc-100 text-zinc-600 hover:opacity-90"
+        data-filter="todos"
+      >
+        Todos
+        <span class="ml-1.5 bg-white/20 px-1.5 py-0.5 rounded-full text-xs">{eventosTodos.length}</span>
+      </button>
+    </div>
+
+    <!-- Cards grid -->
+    {eventosProximos.length === 0 && (
+      <div id="empty-state" class="text-center py-16">
+        <svg class="w-16 h-16 text-zinc-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <h3 class="text-lg font-bold text-zinc-600 mb-2">No hay eventos programados en este momento</h3>
+        <p class="text-zinc-400 text-sm">Estamos preparando nuevas experiencias para vos. ¡Vuelve pronto!</p>
+      </div>
+    )}
+
+    <div id="grid-eventos" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {eventosTodos.map((e) => (
+        <div
+          class="evento-item"
+          data-activo={e.activo ? "true" : "false"}
+        >
+          <EventoCard
+            id={e.id}
+            titulo={e.titulo}
+            descripcion={e.descripcion}
+            coverImage={e.coverImage}
+            fecha={e.fecha}
+            ubicacion={e.ubicacion}
+            activo={e.activo}
+            createdAt={e.createdAt}
+          />
+        </div>
+      ))}
+    </div>
+
+  </section>
+</Layout>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>(".tab-btn");
+  const items = document.querySelectorAll<HTMLDivElement>(".evento-item");
+  const emptyState = document.getElementById("empty-state");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      // Update active tab styles
+      tabs.forEach((t) => {
+        t.classList.remove("bg-primary", "text-white");
+        t.classList.add("bg-zinc-100", "text-zinc-600");
+      });
+      tab.classList.remove("bg-zinc-100", "text-zinc-600");
+      tab.classList.add("bg-primary", "text-white");
+
+      const filter = tab.dataset.filter;
+      let count = 0;
+
+      items.forEach((item) => {
+        if (filter === "todos") {
+          item.style.display = "block";
+          count++;
+        } else {
+          // "proximos"
+          const isActive = item.dataset.activo === "true";
+          item.style.display = isActive ? "block" : "none";
+          if (isActive) count++;
+        }
+      });
+
+      if (emptyState) {
+        emptyState.style.display = count === 0 ? "block" : "none";
+      }
+    });
+  });
+
+  // On load: show only upcoming events by default
+  let initialCount = 0;
+  items.forEach((item) => {
+    if (item.dataset.activo !== "true") {
+      item.style.display = "none";
+    } else {
+      initialCount++;
+    }
+  });
+
+  if (emptyState) {
+    emptyState.style.display = initialCount === 0 ? "block" : "none";
+  }
+</script>

@@ -21,7 +21,7 @@ const fechaPublicacion = new Date(createdAt).toLocaleDateString("es-NI", {
 
 <article class="vacante-card group bg-white rounded-2xl overflow-hidden shadow-sm border border-zinc-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col">
   <!-- Cover Image -->
-  <div class="relative h-44 overflow-hidden">
+  <a href={`/empleos/${id}`} class="relative h-44 overflow-hidden block">
     <img
       src={coverImage}
       alt={`Vacante: ${titulo}`}
@@ -40,7 +40,7 @@ const fechaPublicacion = new Date(createdAt).toLocaleDateString("es-NI", {
       <span class={`w-1.5 h-1.5 rounded-full ${activo ? "bg-emerald-500" : "bg-zinc-400"}`}></span>
       {activo ? "Abierta" : "Cerrada"}
     </span>
-  </div>
+  </a>
 
   <!-- Content -->
   <div class="p-5 flex flex-col flex-1">
@@ -50,7 +50,9 @@ const fechaPublicacion = new Date(createdAt).toLocaleDateString("es-NI", {
       <span class="bg-zinc-100 text-zinc-600 text-xs font-medium px-2.5 py-1 rounded-full">{tipo}</span>
     </div>
 
-    <h2 class="text-lg font-bold text-zinc-900 mb-1 leading-tight">{titulo}</h2>
+    <a href={`/empleos/${id}`}>
+      <h2 class="text-lg font-bold text-zinc-900 mb-1 leading-tight group-hover:text-primary transition-colors">{titulo}</h2>
+    </a>
     <p class="text-sm text-zinc-500 flex items-center gap-1 mb-4">
       <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
