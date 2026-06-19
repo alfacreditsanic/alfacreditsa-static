@@ -106,6 +106,7 @@ function initialsFromCity(city = '') {
                 data-branch-map={b.city}
                 data-lat={b.coords.lat}
                 data-lng={b.coords.lng}
+                data-address={b.address}
               >
                 🗺️​VER EN MAPA
               </button>
@@ -152,14 +153,25 @@ function initialsFromCity(city = '') {
           ></iframe>
         </div>
 
-        <div class="p-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div>
+        <div class="p-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div class="">
             <h3 id="branch-map-title" class="text-xl font-bold text-zinc-950"></h3>
-            <p id="branch-map-coords" class="mt-1 text-sm text-zinc-600"></p>
+            <p id="branch-map-coords" class="mt-1 text-sm text-zinc-600 max-w-[350px]"></p>
           </div>
-          <a id="branch-map-waze" href="#" target="_blank" rel="noopener" class="btn-primary mt-4 sm:mt-0 flex-shrink-0">
-            Abrir en Waze
-          </a>
+          <div class="flex flex-col sm:flex-row gap-2 mt-4 sm:mt-0 w-full sm:w-auto">
+            <button id="branch-map-share" type="button" class="max-h-12 w-full sm:w-auto px-6 py-3 rounded-full font-bold bg-zinc-200 text-zinc-900 border-2 border-zinc-200 hover:bg-zinc-300 hover:border-zinc-300 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+</svg>
+              Copiar localización
+            </button>
+            <a id="branch-map-waze" href="#" target="_blank" rel="noopener" class="max-h-12 btn-primary w-full sm:w-auto flex items-center justify-center">
+              <span class="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-waze" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M566.6 265.7C581.1 351.6 535.7 433.6 453.4 473.8C466.4 507.9 441 544 405.1 544C391.9 544 379.1 538.9 369.5 529.8C359.9 520.7 354.2 508.2 353.5 495C347.1 495.2 289.3 495 277.2 494.4C276.9 501.2 275.3 507.9 272.5 514C269.7 520.1 265.6 525.7 260.6 530.3C255.6 534.9 249.8 538.5 243.4 540.8C237 543.1 230.2 544.2 223.5 543.9C189.6 542.5 165.5 509.1 176.5 476C139.3 462.9 104 441.1 76.9 405.2C63.9 387.9 76.4 363.4 97.7 363.4C144 363.4 129.9 309.2 140.9 253.1C159.3 159.2 257.7 96 352.6 96C455.1 96 549.8 166.7 566.7 265.7zM437.9 452.3C479.9 433.1 519.2 395.6 534.2 350.2C574.7 227.1 470 122.2 352.5 122.2C269.1 122.2 182.2 177.6 166.4 258.2C156.9 307.1 171.4 389.6 97.7 389.6C122.6 422.7 156 442.2 191.4 453.6C216.1 431.8 255.3 438.1 271.2 467.9C285.4 468.9 350.4 469.1 359.1 468.7C362.6 461.8 367.6 455.8 373.8 451.2C380 446.6 387 443.3 394.6 441.7C402.2 440.1 410 440.3 417.5 442.1C425 443.9 432 447.4 438 452.3zM269.5 251.1C269.5 216.4 320.3 216.4 320.3 251.1C320.3 285.8 269.5 285.8 269.5 251.1zM386.1 251.1C386.1 216.4 437 216.4 437 251.1C437 285.8 386.1 285.9 386.1 251.1zM263.5 321.8C260.1 304.9 285.7 299.6 289.1 316.6L289.2 316.9C293.3 338.3 319 360.9 353.3 360C389 359.1 412.6 337.8 417.4 317.2C421.9 301.1 446 306.8 442.9 323.2C437.7 345.4 411.7 385.2 351.4 386.1C308.8 386.1 270.5 358.3 263.5 321.9L263.5 321.9z"/></svg>
+              </span>
+              Abrir en Waze
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -173,14 +185,33 @@ function initialsFromCity(city = '') {
   const coordsText = document.getElementById('branch-map-coords') as HTMLElement | null;
   const closeBtn = document.getElementById('branch-map-close') as HTMLElement | null;
   const wazeBtn = document.getElementById('branch-map-waze') as HTMLAnchorElement | null;
+  const shareBtn = document.getElementById('branch-map-share') as HTMLButtonElement | null;
 
-  function openMapModal(city: string, lat: string, lng: string) {
+  function openMapModal(city: string, address: string, lat: string, lng: string) {
     if (!modal || !iframe || !title || !coordsText || !wazeBtn) return;
-    const src = `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
+    const gmapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+    const src = `${gmapsUrl}&z=15&output=embed`;
     title.textContent = `Sucursal ${city}`;
-    coordsText.textContent = `Coordenadas: ${lat}, ${lng}`;
+    coordsText.textContent = `${address}`;
     iframe.src = src;
     wazeBtn.href = `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
+    
+    if (shareBtn) {
+      shareBtn.onclick = () => {
+        if (navigator.share) {
+          navigator.share({
+            title: `Sucursal AlfaCredit - ${city}`,
+            text: `Ubicación de la sucursal de AlfaCredit en ${city}`,
+            url: gmapsUrl,
+          }).catch((err) => console.log('Error compartiendo:', err));
+        } else {
+          navigator.clipboard.writeText(gmapsUrl).then(() => {
+            alert('¡Enlace copiado al portapapeles!');
+          }).catch(err => console.log('Error copiando:', err));
+        }
+      };
+    }
+
     modal.classList.remove('hidden');
     modal.classList.add('flex');
   }
@@ -197,8 +228,9 @@ function initialsFromCity(city = '') {
       const city = button.getAttribute('data-branch-map') ?? '';
       const lat = button.getAttribute('data-lat') ?? '';
       const lng = button.getAttribute('data-lng') ?? '';
+      const address = button.getAttribute('data-address') ?? '';
       if (!city || !lat || !lng) return;
-      openMapModal(city, lat, lng);
+      openMapModal(city, address, lat, lng);
     });
   });
 
