@@ -29,11 +29,11 @@ import FAQ from './FAQ.astro';
       <Benefits heading="Beneficios al adquirir un crédito con AlfaCredit, S.A." items={benefitsData}>
         <!-- slot: imágenes del collage (ejemplo) -->
         <div class="md:grid grid-cols-2 gap-3 w-full home-collage hidden">
-          <img src={img1.src} alt="Collage 1"/>
-          <img src={img2.src} alt="Collage 2"/>
-          <img src={img3.src} alt="Collage 3" class="w-full h-48 col-span-2 justify-self-center"/>
+          <img src={img1.src} alt="Collage 1" loading="lazy" decoding="async" />
+          <img src={img2.src} alt="Collage 2" loading="lazy" decoding="async" />
+          <img src={img3.src} alt="Collage 3" class="w-full h-48 col-span-2 justify-self-center" loading="lazy" decoding="async" />
         </div>
-        <img src={img3.src} alt="Collage 3" class="md:hidden rounded-md"/>
+        <img src={img3.src} alt="Collage 3" class="md:hidden rounded-md" loading="lazy" decoding="async" />
       </Benefits>
 
       <!-- Requisitos + CTA -->

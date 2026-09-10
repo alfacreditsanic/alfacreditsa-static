@@ -29,7 +29,16 @@ import BtnRequest from "./BtnRequest.astro";
             </div>
           </div>
           <div class="mt-8 md:mt-0 md:w-6/12">
-            <img src={coverimage.src} alt="Progresa con Alfacredit S A" class="rounded-md">
+            <img 
+              src={coverimage.src} 
+              alt="Progresa con Alfacredit S A" 
+              class="rounded-md w-full h-auto" 
+              width={coverimage.width} 
+              height={coverimage.height} 
+              loading="eager" 
+              fetchpriority="high" 
+              decoding="async"
+            />
           </div>
           
         </div>
