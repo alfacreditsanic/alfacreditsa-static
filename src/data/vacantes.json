@@ -19,7 +19,7 @@
       "Residir en Masaya o zonas aledañas.",
       "Habilidades numéricas, excelente atención al cliente y manejo de efectivo con precisión."
     ],
-    "activo": true,
+    "activo": false,
     "formUrl": "https://wa.me/50583528828",
     "createdAt": "2026-08-11T16:45:00-06:00",
     "updatedAt": "2026-08-11T16:45:00-06:00"
@@ -90,7 +90,7 @@
       "Mínimo 2 años de experiencia en soporte técnico.",
       "Actitud proactiva, capacidad de análisis y gusto por los retos."
     ],
-    "activo": true,
+    "activo": false,
     "formUrl": "https://wa.me/50583528828",
     "createdAt": "2026-03-30T10:00:00-06:00",
     "updatedAt": "2026-03-30T10:00:00-06:00"
